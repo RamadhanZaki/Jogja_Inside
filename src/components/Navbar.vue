@@ -1,6 +1,9 @@
 <template>
-
+  <Navbar class="Navbar">
+    <p>Navbar</p>
+  </Navbar>
 </template>
+
 
 <script>
 export default {
