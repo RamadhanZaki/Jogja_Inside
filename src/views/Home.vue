@@ -6,6 +6,7 @@
     <TopThree />
     <HiddenGems/>
     <TopDestinations/>
+    <WhyChooseUs/>
     <Footer/>
   </div>
 </template>
@@ -19,6 +20,7 @@ import TopDestinations from '@/components/TopDestination.vue'
 import HiddenGems from '@/components/Home/HiddenGems.vue'
 import TopThree from '@/components/TopThree.vue' 
 import Footer from '@/components/Footer.vue'
+import WhyChooseUs from '@/components/Home/WhyChooseUs.vue'
 
 export default {
   name: 'HomePage',
@@ -29,6 +31,7 @@ export default {
     TopThree,
     TopDestinations,
     HiddenGems,
+    WhyChooseUs,
     Footer,
     
   }
