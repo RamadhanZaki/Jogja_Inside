@@ -4,6 +4,7 @@
     <Header/>
     <IntroText/>
     <TopThree />
+    <HiddenGems/>
     <TopDestinations/>
     <Footer/>
   </div>
@@ -15,6 +16,7 @@ import Navbar from '@/components/Navbar.vue'
 import Header from '@/components/Home/Header.vue'
 import IntroText from '@/components/Home/IntroText.vue'
 import TopDestinations from '@/components/TopDestination.vue'
+import HiddenGems from '@/components/Home/HiddenGems.vue'
 import TopThree from '@/components/TopThree.vue' 
 import Footer from '@/components/Footer.vue'
 
@@ -26,6 +28,7 @@ export default {
     IntroText,
     TopThree,
     TopDestinations,
+    HiddenGems,
     Footer,
     
   }

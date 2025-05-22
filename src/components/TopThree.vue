@@ -59,7 +59,7 @@ const cards = [
 .three-top {
   display: flex;
   width: 100vw;
-  height: 80vh;
+  height: 100vh;
   margin: 0;
   padding: 4rem 0; /* Tambahkan padding atas & bawah */
   overflow: hidden;
