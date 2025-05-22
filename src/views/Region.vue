@@ -1,10 +1,17 @@
 <template>
+  <div class="region">
 
+
+
+  </div>
 </template>
 
 <script>
+
 export default {
-  name: 'AppNavbar'
+  name: 'RegionPage',
+  components: {
+  },
 };
 </script>
 
