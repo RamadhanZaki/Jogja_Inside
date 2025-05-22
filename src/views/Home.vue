@@ -5,6 +5,7 @@
     <IntroText/>
     <TopThree />
     <TopDestinations/>
+    <Footer/>
   </div>
 </template>
 
@@ -15,7 +16,7 @@ import Header from '@/components/Home/Header.vue'
 import IntroText from '@/components/Home/IntroText.vue'
 import TopDestinations from '@/components/TopDestination.vue'
 import TopThree from '@/components/TopThree.vue' 
-
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'HomePage',
@@ -25,6 +26,7 @@ export default {
     IntroText,
     TopThree,
     TopDestinations,
+    Footer,
     
   }
 }
