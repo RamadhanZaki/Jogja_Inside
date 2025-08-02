@@ -1,8 +1,10 @@
 <template>
-  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
-    <div class="container-fluid">
-
-      <!-- LOGO optimized for LCP -->
+  <nav
+    class="navbar navbar-expand-lg"
+    :class="isMobile ? 'navbar-dark bg-dark' : 'navbar-dark navbar-custom'"
+  >
+    <div class="container">
+      <!-- Logo -->
       <router-link class="navbar-brand" to="/">
         <img
           src="@/assets/thumbnail/Icon/Jogja_Inside.webp"
@@ -24,10 +26,9 @@
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!-- Navbar Menu -->
-      <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarSupportedContent">
+      <!-- Menu -->
+      <div class="collapse navbar-collapse justify-content-end px-3 px-md-4" id="navbarSupportedContent">
         <ul class="navbar-nav mb-2 mb-lg-0">
-
           <li class="nav-item mx-3">
             <router-link class="nav-link active" to="/">Home</router-link>
           </li>
@@ -46,33 +47,28 @@
             </a>
             <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
               <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/yogyakarta">
+                <router-link class="dropdown-item d-flex align-items-center" to="/Region/Yogyakarta">
                   <i class="fas fa-map-pin me-2"></i> Kota Yogyakarta
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/region">
+                <router-link class="dropdown-item d-flex align-items-center" to="/Region/Bantul">
                   <i class="fas fa-map-pin me-2"></i> Kabupaten Bantul
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/sleman">
+                <router-link class="dropdown-item d-flex align-items-center" to="/Region/Sleman">
                   <i class="fas fa-map-pin me-2"></i> Kabupaten Sleman
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/kulonprogo">
+                <router-link class="dropdown-item d-flex align-items-center" to="/Region/KulonProgo">
                   <i class="fas fa-map-pin me-2"></i> Kabupaten Kulon Progo
                 </router-link>
               </li>
               <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/gunungkidul">
+                <router-link class="dropdown-item d-flex align-items-center" to="/Region/GunungKidul">
                   <i class="fas fa-map-pin me-2"></i> Kabupaten Gunungkidul
-                </router-link>
-              </li>
-              <li>
-                <router-link class="dropdown-item d-flex align-items-center" to="/destinasi">
-                  <i class="fas fa-map-pin me-2"></i> Template Destinasi Wisata
                 </router-link>
               </li>
             </ul>
@@ -81,19 +77,9 @@
           <li class="nav-item mx-3">
             <router-link class="nav-link active" to="/about">About</router-link>
           </li>
-
-          <!-- Search Box -->
-          <form class="d-flex align-items-center mx-2">
-            <div class="search-box position-relative">
-              <input
-                class="form-control custom-search"
-                type="search"
-                placeholder="Search"
-                aria-label="Search"
-              />
-            </div>
-          </form>
-
+          <li class="nav-item mx-3">
+            <router-link class="nav-link active" :to="{ path: '/about', hash: '#team' }">Team</router-link>
+          </li>
         </ul>
       </div>
     </div>
@@ -102,12 +88,29 @@
 
 <script>
 export default {
-  name: 'AppNavbar'
+  name: 'AppNavbar',
+  data() {
+    return {
+      isMobile: false,
+    };
+  },
+  mounted() {
+    this.checkViewport();
+    window.addEventListener('resize', this.checkViewport);
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.checkViewport);
+  },
+  methods: {
+    checkViewport() {
+      this.isMobile = window.innerWidth <= 768;
+    }
+  }
 };
 </script>
 
 <style scoped>
-/*------------------------------------------------------------- Navbar -----------------------------------------------------------------------*/
+/* NAVBAR CUSTOM UNTUK DEKSTOP */
 .navbar-custom {
   background-color: transparent;
   position: absolute;
@@ -122,11 +125,12 @@ export default {
   color: white;
 }
 
+/* Saat scroll: navbar tetap stylish */
 .navbar-custom.scrolled {
   background-color: rgba(0, 0, 0, 0.9);
 }
 
-/* Dropdown Menu */
+/* Dropdown Styling (berlaku di semua mode) */
 .dropdown-menu {
   border-radius: 12px;
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
@@ -150,53 +154,5 @@ export default {
 .dropdown-item:hover {
   background-color: #f0f0f0;
   color: #000;
-}
-
-/* Search Box */
-.search-box {
-  position: relative;
-  width: 200px;
-}
-
-.custom-search {
-  padding-left: 40px;
-  padding-right: 15px;
-  border-radius: 50px !important;
-  width: 100%;
-  height: 35px;
-  box-sizing: border-box;
-  font-size: 14px;
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-  .navbar-toggler {
-    display: block;
-  }
-
-  .navbar-collapse {
-    display: none !important;
-  }
-
-  .navbar-collapse.show {
-    display: block !important;
-  }
-
-  .navbar-nav {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    width: 100%;
-    padding-left: 0;
-    margin-left: 0;
-  }
-
-  .navbar-nav li {
-    text-align: left;
-  }
-
-  .navbar-nav a {
-    display: block;
-  }
 }
 </style>
