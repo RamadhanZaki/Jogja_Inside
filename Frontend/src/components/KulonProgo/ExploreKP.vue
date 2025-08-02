@@ -1,4 +1,4 @@
-<template>
+c:\xampp\htdocs\jogja-inside Lasttt\Frontend\src\components\Admin\DestinationList.vue<template>
   <section class="top-destinasi-wrapper">
     <div class="container">
       <!-- SECTION 1: Sejarah Kulon Progo -->
