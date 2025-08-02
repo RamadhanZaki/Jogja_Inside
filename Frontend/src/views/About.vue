@@ -1,24 +1,25 @@
 <template>
   <div class="about">
     <Navbar />
-    <!-- About Section -->
+
+    <!-- About Section (statis) -->
     <section class="about-section d-flex align-items-center">
       <div class="container about-content" ref="aboutContent">
-        <h1 class="about-title">ABOUT</h1>
+        <h1 class="about-title" aria-label="Tentang Jogja Inside">ABOUT</h1>
         <div class="row align-items-center">
           <!-- Gambar -->
           <div class="col-md-6 order-1 order-md-2 text-center">
             <img
-              src="@/assets/thumbnail/Profile/Team.webp"
+              src="@/assets/team.jpg"
               alt="Foto Tim Jogja Inside"
-              class="img-fluid about-img"
-              loading="lazy"
-              width="600"
-              height="400"
+              class="about-img"
+              loading="eager"
+              fetchpriority="high"
+              role="img"
             />
           </div>
 
-          <!-- Teks -->
+          <!-- Teks Deskripsi -->
           <div class="col-md-6 order-2 order-md-1 text-light text-justify">
             <p>
               Di tanah bertuah yang dipahat oleh sejarah dan budaya, Jogja Inside memulai perjalanannya pada tahun 2025. 
@@ -33,64 +34,71 @@
       </div>
     </section>
 
-    <!-- Team -->
-    <div class="container-fluid pt-5 pb-5 bg-light">
-      <div class="container text-center">
-        <h2 class="display-3" id="team">Tim</h2>
+<!-- Team Section -->
+<div class="container-fluid pt-5 pb-5 bg-light">
+  <div class="container text-center">
+    <h2 class="display-3" id="team">Developer Team</h2>
+    <p>
+      Kami adalah Team kreatif yang berkontribusi dalam membangun Jogja Inside, dari desain hingga pengembangan.
+    </p>
+
+    <!-- Loading Text Saja -->
+    <div v-if="!teamMembers.length" class="d-flex justify-content-center align-items-center py-5">
+      <div class="loading-text">Loading...</div>
+    </div>
+
+    <!-- Daftar Anggota Tim -->
+    <div class="row pt-4 gx-4 gy-4 justify-content-center" v-else>
+      <div
+        v-for="member in teamMembers"
+        :key="member.id"
+        class="col-lg-3 col-md-4 col-sm-6 tim mb-4"
+      >
+        <img
+          :src="getImageUrl(member.img)"
+          :alt="`Foto ${member.name}`"
+          class="rounded-circle mb-3"
+          width="200"
+          height="150"
+          loading="lazy"
+          role="img"
+        />
+        <h4>{{ member.name }}</h4>
+        <p>{{ member.job }}</p>
         <p>
-          Kami adalah tim kreatif yang berkontribusi dalam membangun Jogja Inside, dari desain hingga pengembangan.
-        </p>
-        <div class="row pt-4 gx-4 gy-4 justify-content-center">
-
-          <div
-            v-for="member in teamMembers"
-            :key="member.name"
-            class="col-lg-3 col-md-4 col-sm-6 tim mb-4"
+          <a
+            :href="member.instagram"
+            class="social"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`Instagram ${member.name}`"
           >
-            <img
-              :src="require(`@/assets/thumbnail/Profile/${member.image}`)"
-              :alt="member.name"
-              class="rounded-circle mb-3"
-              width="200"
-              height="150"
-              loading="lazy"
-            />
-            <h4>{{ member.name }}</h4>
-            <p>{{ member.role }}</p>
-            <p>
-              <a
-                :href="member.instagram"
-                class="social"
-                target="_blank"
-                rel="noopener noreferrer"
-                :aria-label="`Instagram ${member.name}`"
-              >
-                <i class="fab fa-instagram"></i>
-              </a>
-              <a
-                :href="member.github"
-                class="social"
-                target="_blank"
-                rel="noopener noreferrer"
-                :aria-label="`GitHub ${member.name}`"
-              >
-                <i class="fab fa-github"></i>
-              </a>
-            </p>
-          </div>
-
-        </div>
+            <i class="fab fa-instagram"></i>
+          </a>
+          <a
+            :href="member.github"
+            class="social"
+            target="_blank"
+            rel="noopener noreferrer"
+            :aria-label="`GitHub ${member.name}`"
+          >
+            <i class="fab fa-github"></i>
+          </a>
+        </p>
       </div>
     </div>
+  </div>
+</div>
+
+
     <Footer />
   </div>
 </template>
 
 <script>
-
+import axios from 'axios'
 import Navbar from '@/components/Navbar.vue'
-import Footer from '@/components/Footer.vue';
-
+import Footer from '@/components/Footer.vue'
 
 export default {
   name: 'AboutPage',
@@ -100,78 +108,45 @@ export default {
   },
   data() {
     return {
-      teamMembers: [
-        {
-          name: 'Debi Saputra',
-          image: 'Debiiiiii.webp',
-          role: 'Web Designer',
-          instagram: 'https://www.instagram.com/d3bisptr4_/',
-          github: 'https://github.com/DebiSaputra26'
-        },
-        {
-          name: 'Kamil',
-          image: 'mil.webp',
-          role: 'Web Designer',
-          instagram: 'https://www.instagram.com/kamilrizqullah21/',
-          github: 'https://github.com/kamill21'
-        },
-        {
-          name: 'Dito',
-          image: 'dit.webp',
-          role: 'Web Designer',
-          instagram: 'https://www.instagram.com/d3bisptr4_/',
-          github: 'https://github.com/DebiSaputra26'
-        },
-        {
-          name: 'Kinah',
-          image: 'kinaa.webp',
-          role: 'UI/UX Designer',
-          instagram: 'https://www.instagram.com/nasihaass_/',
-          github: 'https://github.com/nasihaassakinah'
-        },
-        {
-          name: 'Natasya',
-          image: 'syaa.webp',
-          role: 'UI/UX Designer',
-          instagram: 'https://www.instagram.com/szaasyy/',
-          github: 'https://github.com/Asyaa415'
-        },
-        {
-          name: 'Jeffry',
-          image: 'Jeff.webp',
-          role: 'Front End Developer',
-          instagram: 'https://www.instagram.com/d3bisptr4_/',
-          github: 'https://github.com/DebiSaputra26'
-        },
-        {
-          name: 'Jukii',
-          image: 'juk.webp',
-          role: 'Bagian Beli Es Teh',
-          instagram: 'https://www.instagram.com/d3bisptr4_/',
-          github: 'https://github.com/DebiSaputra26'
-        }
-      ]
+      teamMembers: [],
     }
   },
   mounted() {
-    this.$nextTick(() => {
-      const el = this.$refs.aboutContent;
-      if (!el) return;
+    this.fetchTeamMembers()
 
+    this.$nextTick(() => {
+      const el = this.$refs.aboutContent
+      if (!el) return
       const observer = new IntersectionObserver(
         ([entry]) => {
-          if (entry.isIntersecting) {
-            el.classList.add('animate-slide-in');
-          } else {
-            el.classList.remove('animate-slide-in');
-          }
+          el.classList.toggle('animate-slide-in', entry.isIntersecting)
         },
         { threshold: 0.5 }
-      );
-
-      observer.observe(el);
-    });
-  }
+      )
+      observer.observe(el)
+    })
+  },
+  methods: {
+    async fetchTeamMembers() {
+    try {
+      const baseURL = process.env.VUE_APP_API_BASE || 'https://jogja-inside.my.id/api'
+      const res = await axios.get(`${baseURL}/teams`, {
+        headers: {
+          'Cache-Control': 'max-age=3600',
+        },
+      })
+      this.teamMembers = res.data
+    } catch (err) {
+      console.error('Gagal mengambil data tim:', err)
+    }
+  },
+    getImageUrl(path) {
+    if (!path) return ''
+    const baseURL = 'https://jogja-inside.my.id'  // ← sebelumnya pakai http
+    const cleaned = path.startsWith('/storage') ? path : `/storage/${path}`
+    return `${baseURL}${cleaned}`
+    },
+  },
 }
 </script>
 
@@ -187,6 +162,20 @@ export default {
   }
 }
 
+@keyframes blink {
+  0% { opacity: 0.2; }
+  50% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+.loading-text {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #333;
+  animation: blink 1.2s infinite;
+}
+
+
 .about-section {
   min-height: 100vh;
   background-image: url('@/assets/Background/About.webp');
@@ -201,7 +190,7 @@ export default {
   content: "";
   position: absolute;
   inset: 0;
-  background-color: rgba(0, 0, 0, 0.6); /* Kontras ditingkatkan */
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 1;
 }
 
@@ -232,16 +221,22 @@ export default {
 }
 
 .about-img {
+  width: 550px;
+  height: 300px;
+  object-fit: cover;
   border: 3px solid #ffffff;
   border-radius: 15px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
-  width: 100%;
-  height: auto;
-  object-fit: cover;
+  box-shadow: 0 0 10px rgba(0,0,0,0.3);
+  display: block;
+  margin: 0 auto;
   transform: translateY(-15px);
 }
 
-/* Mobile responsive */
+.about-content p {
+  margin-bottom: 18px;
+  line-height: 1.8;
+}
+
 @media (max-width: 767px) {
   .about-content {
     text-align: center;
@@ -255,6 +250,8 @@ export default {
   }
 
   .about-img {
+    width: 100%;
+    height: auto;
     margin-bottom: 20px;
   }
 
@@ -268,11 +265,10 @@ export default {
   }
 }
 
-/* Team Section */
 .tim img {
   width: 100%;
   max-width: 150px;
-  border: 5px solid #cccccc;
+  border: 5px solid #ccc;
 }
 
 a.social {
@@ -285,17 +281,5 @@ a.social {
   line-height: 40px;
   text-align: center;
   margin: 0 6px;
-}
-
-@media (max-width: 768px) {
-  .tim img {
-    max-width: 150px;
-  }
-
-  a.social {
-    width: 40px;
-    height: 40px;
-    line-height: 40px;
-  }
 }
 </style>
