@@ -1,8 +1,6 @@
 <template>
   <div class="about">
     <Navbar />
-
-    <!-- About Section (statis) -->
     <section class="about-section d-flex align-items-center">
       <div class="container about-content" ref="aboutContent">
         <h1 class="about-title" aria-label="Tentang Jogja Inside">ABOUT</h1>
