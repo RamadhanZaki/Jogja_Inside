@@ -32,3 +32,20 @@ Menyamakan semua **lingkungan kerja** agar project Laravel & Vue dapat dijalanka
 - Cek versi:
   ```bash
   composer -V
+
+### 2. Install Node.js
+- Install Composer dari: [https://nodejs.org/en/download)
+- Cek versi:
+  ```bash
+  node -v
+  npm -v
+
+## ✅ STEP 4: Run Project dengan mudah
+
+Gunakan file berikut:
+📄 Vue Ui & Laravel v2.bat
+
+Akan otomatis:
+- Menjalankan Laravel backend
+- Menjalankan Vue frontend
+
