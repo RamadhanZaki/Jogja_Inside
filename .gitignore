@@ -1,0 +1,12 @@
+# Global Node
+node_modules/
+dist/
+
+# Laravel
+/vendor
+/storage/*.key
+.env
+
+# IDEs
+.idea/
+.vscode/
