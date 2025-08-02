@@ -3,7 +3,6 @@
 
 
     <section class="about-section">
-      <!-- Background sebagai <img> agar bisa lazy-load -->
       <img
         src="@/assets/Background/About.webp"
         class="bg-img"
