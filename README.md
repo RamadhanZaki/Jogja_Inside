@@ -1,5 +1,5 @@
 
-## 💻 *Jogja-Inside.my.id *
+## 💻 Jogja-Inside.my.id
 Di tanah bertuah yang dipahat oleh sejarah dan budaya, Jogja Inside memulai perjalanannya pada tahun 2025. Lahir dari semangat menyelesaikan Final Project mata kuliah Pemrograman Web, web ini tumbuh menjadi lebih dari sekadar tugas akademik tetapi menjelma menjadi penghormatan kecil untuk Yogyakarta, sang “Kota Pelajar” yang penuh pesona.
 
 Jogja Inside mengajak setiap penjelajah untuk menyibak sisi lain Yogyakarta dari lorong-lorong sunyi yang berhiaskan mural, kafe-kafe tersembunyi yang memeluk tradisi, hingga bentang alam yang masih perawan. Setiap artikel yang tertulis adalah serpihan kisah, dan setiap rekomendasi adalah denyut nadi Yogyakarta yang sejati.
@@ -15,7 +15,6 @@ Jogja Inside mengajak setiap penjelajah untuk menyibak sisi lain Yogyakarta dari
 | 5  | Ahmad Kamil Rizqullah                              | 23.11.5488  | [kamill21](https://github.com/kamill21)|
 | 6  | Catur Sunu Rahmadhita                              | 23.11.5496  | [Dito441](https://github.com/Dito441)            |
 | 7  | Ramadhan Zaki Attamimi                             | 23.11.5500  | [RamadhanZaki](https://github.com/RamadhanZaki)          |
-        |
 
 ## 📘 Jogja Inside – Panduan Instalasi XAMPP & Setup Project Laravel + Vue
 
