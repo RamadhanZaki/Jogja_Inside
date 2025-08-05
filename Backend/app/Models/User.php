@@ -2,31 +2,39 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
-    /** @use HasFactory<\Database\Factories\UserFactory> */
-    use HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable;
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var list<string>
+     * Gunakan nama tabel 'user' sesuai struktur database.
+     */
+    protected $table = 'user';
+
+    /**
+     * Aktifkan fitur timestamps agar Laravel mengisi kolom created_at dan updated_at.
+     */
+    public $timestamps = true;
+
+    /**
+     * Kolom yang boleh diisi secara mass-assignment.
      */
     protected $fillable = [
         'name',
+        'username',
         'email',
+        'role',
         'password',
     ];
 
     /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var list<string>
+     * Kolom yang akan disembunyikan saat model dikonversi ke array/JSON.
      */
     protected $hidden = [
         'password',
@@ -34,15 +42,19 @@ class User extends Authenticatable
     ];
 
     /**
-     * Get the attributes that should be cast.
-     *
-     * @return array<string, string>
+     * Cast untuk properti tertentu agar otomatis dikonversi ke tipe yang sesuai.
      */
-    protected function casts(): array
+    protected $casts = [
+        'email_verified_at' => 'datetime',
+    ];
+
+    /**
+     * Setter untuk memastikan password selalu di-hash saat diset.
+     */
+    public function setPasswordAttribute($value)
     {
-        return [
-            'email_verified_at' => 'datetime',
-            'password' => 'hashed',
-        ];
+        if (!empty($value)) {
+            $this->attributes['password'] = Hash::needsRehash($value) ? Hash::make($value) : $value;
+        }
     }
 }
