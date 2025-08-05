@@ -186,7 +186,7 @@ export default {
         'Pantai', 'Situs Sejarah', 'Tempat Rekreasi', 'Gunung & Trekking',
         'Wisata Kuliner', 'Wisata Air', 'Wisata Religi', 'Alam Terbuka'
       ],
-      regionOptions: ['Yogyakarta', 'Bantul', 'Sleman', 'Kulon Progo', 'Gunung Kidul'],
+      regionOptions: ['Yogyakarta', 'Bantul', 'Sleman', 'Kulon Progo', 'GunungKidul'],
       toast: {
         show: false,
         message: '',
@@ -214,15 +214,25 @@ export default {
   created() {
     axios.get(`${process.env.VUE_APP_API_BASE}/destinations/${this.destinationData.id}`)
       .then(res => {
-        this.destination = res.data.data;
+        this.destination = {
+          ...this.destination,
+          ...res.data.data,
+          media: [],
+        };
         this.backgroundPreview = res.data.data.background_url;
+
+        if (Array.isArray(res.data.data.media_urls)) {
+          this.mediaPreview = res.data.data.media_urls.map(url => ({
+            url,
+            type: this.getFileType(url),
+          }));
+        }
       })
       .catch(err => {
         console.error(err);
         this.showToast('❌ Gagal memuat data destinasi!', '#dc3545');
       });
   },
-
   mounted() {
   this.$nextTick(() => {
     ['desc', 'loc', 'ticket', 'fasil'].forEach(ref => {
